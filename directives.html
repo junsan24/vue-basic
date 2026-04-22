@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Directives</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <p>{{ content }}</p>
+        <img :src="imgSrc" :alt="imgAlt" class="s">
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    title: 'This is a title',
+                    content: 'Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development.',
+                    imgSrc: 'https://up.yimg.com/ib/th/id/OIP.VRL6tkQp3ffOhwZJenJmFQHaEK?pid=Api&rs=1&c=1&qlt=95&w=168&h=94',
+                    imgAlt: 'Lorem image'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
