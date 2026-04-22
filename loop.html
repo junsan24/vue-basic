@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Loop</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="x in 10">{{ x }}</li>
+        </ul>
+
+        <div v-for="(product, index) in products" :key="product.id">
+            <h1>{{ index + 1 }}) {{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    products: [
+                        {
+                            id: 1,
+                            name: 'Product One',
+                            description: 'Lorem ipsum is a dummy or placeholder text commonly used in graphic design'
+                        },
+                        {
+                            id: 2,
+                            name: 'Product Two',
+                            description: 'Lorem ipsum is a dummy or placeholder text commonly used in graphic design'
+                        },
+                        {
+                            id: 3,
+                            name: 'Product Three',
+                            description: 'Lorem ipsum is a dummy or placeholder text commonly used in graphic design'
+                        }
+                    ] 
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
