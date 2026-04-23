@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Fields</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>Input Fields</h1>
+        <input type="text" v-model="name" placeholder="Name">
+        <p>Name: {{ name }}</p>
+        <hr>
+        <textarea v-model="description" placeholder="Description"></textarea>
+        <p>Description: {{ description }}</p>
+        <hr>
+        <input type="checkbox" id="checkbox" v-model="isChecked">
+        <label for="checkbox">Check me</label>
+        <p>Is Checked: {{ isChecked }}</p>
+        <hr>
+        <input type="checkbox" true-value="Yes" false-value="No" id="checkbox2" v-model="isChecked2">
+        <label for="checkbox2">Check me</label> 
+        <p>Is Checked: {{ isChecked2 }}</p>
+        <hr>
+        <input type="checkbox" id="checkbox3" value="One" v-model="isChecked3"> One
+        <input type="checkbox" id="checkbox4" value="Two" v-model="isChecked3"> Two
+        <input type="checkbox" id="checkbox5" value="Three" v-model="isChecked3"> Three
+        <p>Is Checked: {{ isChecked3 }}</p>
+        <hr>
+        <input type="radio" id="radio1" value="One" v-model="isChecked4"> One
+        <input type="radio" id="radio2" value="Two" v-model="isChecked4"> Two
+        <input type="radio" id="radio3" value="Three" v-model=" isChecked4"> Three
+        <p>Is Checked: {{ isChecked4 }}</p>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    name: 'Jun',
+                    description: '',
+                    isChecked: false,
+                    isChecked2: 'Yes',
+                    isChecked3: [],
+                    isChecked4: null
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
