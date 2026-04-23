@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Input</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Select Input</h1>
+        <select v-model="selected">
+            <option disabled value="">Please select one</option>
+            <option>Option One</option>
+            <option value="2">Option Two</option>
+            <option>Option Three</option>
+        </select>
+        <p>Selected: {{ selected }}</p>
+        <hr>
+        <select v-model.number="selected2" multiple>
+            <option disabled value="">Please select one</option>
+            <option value="1">Option One</option>
+            <option value="2">Option Two</option>
+            <option value="3">Option Three</option> 
+        </select>
+        <p>Selected: {{ selected2 }}</p>
+        <hr>
+        <select v-model="selected3">
+            <option disabled value="">Please select one</option>
+            <option v-for="option in values" :value="option.name">{{ option.name }}</option>
+        </select>
+        <p>Selected: {{ selected3 }}</p>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    selected: '',
+                    selected2: [],
+                    selected3: '',
+                    values: [
+                        { id: 1, name: 'Option One' },
+                        { id: 2, name: 'Option Two' },
+                        { id: 3, name: 'Option Three' }
+                    ]
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
