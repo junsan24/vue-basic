@@ -9,7 +9,13 @@
 </head>
 <body>
     <div id="app">
-        <div v-for="product in products" :key="product.id">
+        Price <input type="number" v-model.number="maxPrice" placeholder="Enter price">
+        <label for="maxPrice">Max Price</label> 
+        {{ maxPrice }}
+        <hr>
+        <input type="checkbox" v-model="showBadge"> Show Badge
+        <hr>
+        <div v-for="product in products" :key="product.id" v-show="product.price <= maxPrice">
             <h3>{{ product.name }}</h3>
             <p>{{ product.description }}</p>
             <image :src="product.image" :alt="product.name" height="200">
@@ -28,6 +34,7 @@
             data() {
                 return {
                     showBadge: true,
+                    maxPrice: 150,
                     products : [
                         {
                             "id": "532",
