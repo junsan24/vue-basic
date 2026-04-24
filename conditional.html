@@ -13,13 +13,15 @@
         <label for="maxPrice">Max Price</label> 
         {{ maxPrice }}
         <hr>
+        {{ itemCounts }} items
+        <hr>
         <input type="checkbox" v-model="showBadge"> Show Badge
         <hr>
         <div v-for="product in products" :key="product.id" v-show="product.price <= maxPrice">
             <h3>{{ product.name }}</h3>
             <p>{{ product.description }}</p>
             <image :src="product.image" :alt="product.name" height="200">
-            <h4>${{ product.price }}</h4>
+            <h4>{{ currency(product.price) }}</h4>
             <div v-show="showBadge">
                 <span v-if="product.price < 150 && product.price > 96" class="badge bg-success">premier</span>
                 <span v-else-if="product.price < 96 && product.price > 70" class="badge bg-primary">value</span>
@@ -35,6 +37,7 @@
                 return {
                     showBadge: true,
                     maxPrice: 150,
+                    itemCount: 0,
                     products : [
                         {
                             "id": "532",
@@ -69,8 +72,18 @@
                             "image": "https://hplussport.com/wp-content/uploads/2016/12/unisex-grunge-jeans_LYNDA_29937.jpg"
                         }
                     ] 
-                }  
-            }
+                }          
+            },
+            computed: {
+                itemCounts() {
+                    return this.products.filter(product => product.price <= this.maxPrice).length;
+                }
+            },
+            methods: {
+                currency(price) {
+                    return `$${Number(price).toFixed(2)}`;
+                }
+            }    
         }
 
         Vue.createApp(App).mount('#app')
