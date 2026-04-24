@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computed Properties and Watchers</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="firstName" placeholder="First Name">
+        <input type="text" v-model="lastName" placeholder="Last Name">
+        <h1>Full Name: {{ fullName }}</h1>
+        <hr>
+        <h1>Computed Full Name: {{ fullName }}</h1>
+        <h1>Second Computed Full Name: {{ (secondFullName = 'Jane Doe') && secondFullName }}</h1>
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    fullName: '',
+                    firstName2: null,
+                    lastName2: null
+                }
+            },
+            watch: {
+                firstName(newValue) {
+                    this.fullName = `${newValue} ${this.lastName}`;
+                },
+                lastName(newValue) {
+                    this.fullName = `${this.firstName} ${newValue}`;
+                }
+            },
+            computed: {
+                fullName() {
+                    return `${this.firstName} ${this.lastName}`;
+                },
+                secondFullName: {
+                    get() {
+                        return `${this.firstName2} ${this.lastName2}`;
+                    },
+                    set(newValue) {
+                        const names = newValue.split(' ');
+                        this.firstName2 = names[0];
+                        this.lastName2 = names[1];
+                    }   
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>
